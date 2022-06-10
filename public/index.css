@@ -1,0 +1,24 @@
+@font-face {
+	font-family: IRANSans;
+	font-style: normal;
+	font-weight: normal;
+	src: url('/fonts/eot/dana-fanum-regular.eot');
+	src: url('/fonts/eot/dana-fanum-regular.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('/fonts/woff2/dana-fanum-regular.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('/fonts/woff/dana-fanum-regular.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('/fonts/Dana-FaNum-Regular.ttf') format('truetype');
+}
+@font-face {
+	font-family: IRANSans;
+	font-style: normal;
+	font-weight: bold;
+	src: url('/fonts/eot/dana-fanum-bold.eot');
+	src: url('/fonts/eot/dana-fanum-bold.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('/fonts/woff2/dana-fanum-bold.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('/fonts/woff/dana-fanum-bold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('/fonts/Dana-FaNum-Bold.ttf') format('truetype');
+}
+
+body {
+  font-family: "IRANSans" !important;
+}

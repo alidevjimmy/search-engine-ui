@@ -14,14 +14,12 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #9c27b0;
+  padding-top: 10px;
 }
 
 .App-link {
@@ -32,7 +30,145 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+
+
+
+.header {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  background-color: #fff;
+  box-shadow: 0 7px 6px -5px #dfe1e5;
+  transition: top .5s ease-in-out;
+  top: -100%;
+  padding-bottom: 21px;
+}
+
+.logo-box {
+  padding: 20px;
+  display: flex;
+  padding-right: 50px;
+  width: 7%
+}
+
+.search-div {
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  width: 52%;
+  height: 40px;
+  box-shadow: 0 0 5px 0 rgb(0 0 0 / 14%);
+  position: relative;
+  background-color: #fff;
+  margin-top: 18px;
+  display: inline-block;
+  padding-left: 0px;
+  padding-right: 10px;
+}
+
+.search-in {
+  border: none;
+  margin-bottom: 4px;
+  width: 90%;
+  height: 31px;
+  margin-top: 3px;
+}
+
+.search-box {
+  display: flex !important;
+}
+
+.search-in:focus {
+  outline-width: 0;
+}
+
+.search-btn {
+  margin-left: 8px;
+  color: #651fff;
+}
+
+.search-btn:hover {
+  cursor: pointer;
+}
+
+.close-btn {
+  visibility: hidden;
+}
+
+.result {
+  margin-top: 50px;
+  padding-right: 13rem;
+  padding-left: 13rem;
+  padding-bottom: 65px;
+}
+
+.grid {
+  direction: rtl;
+  text-align: right;
+  margin-bottom: 40px;
+}
+
+.grid-url {
+  color: #777 !important;
+  font-size: 14px;
+}
+
+.grid-title {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.grid-summary {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.footer {
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  background-color: #f1f1f1;
+  bottom: 0px;
+}
+
+.statistic {
+  font-size: 14px;
+  color: #777;
+}
+
+.vision {
+  width: 100%;
+  padding-bottom: 24px;
+  text-align: right;
+}
+
+.footer-ul {
+  display: flex;
+  place-content: center;
+  padding: 0;
+}
+
+.footer-li {
+  list-style: none;
+}
+
+.footer-a {
+  color: #777;
+}
+
+a {
+  text-decoration-line: none;
+}
+
+.statistic-skel {
+  width: 170px;
+  height: 30px;
 }

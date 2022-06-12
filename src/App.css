@@ -98,11 +98,6 @@
 .search-btn:hover {
   cursor: pointer;
 }
-
-.close-btn {
-  visibility: hidden;
-}
-
 .result {
   margin-top: 50px;
   padding-right: 13rem;

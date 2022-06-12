@@ -4,12 +4,14 @@ import CloseIcon from '@mui/icons-material/Close';
 import React, { useState, useEffect } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
-
+import axios from 'axios';
+import Alert from '@mui/material/Alert';
 
 function App() {
   const [searchText, setSearchText] = useState("");
   const [resArr, setResArr] = useState([])
+  const [time, setTime] = useState(0)
+  const [count, setCount] = useState(0)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const [searched, setSearched] = useState(false)
@@ -19,28 +21,46 @@ function App() {
 
   function handleSearch(e) {
     setSearchText(e.target.value);
-    if (e.target.value !== 0 || e.target.value !== "") {
-      btnClose.style.visibility = "visible";
-    } else {
-      btnClose.style.visibility = "hidden";
-    }
   }
 
 
   function handleCloseBtn() {
     setSearchText("");
-    btnClose.style.visibility = "hidden";
   }
 
   function handleSearchBtn() {
     if (searchText.length != 0 && searchText != "") {
-      console.log("fetch data")
+      setLoading(true)
+      setError(false)
+      axios.get(`http://172.17.0.1:5002`)
+        .then(res => {
+          if (typeof res.data != "undefined") {
+            if (typeof res.data.results != "undefined") {
+              setResArr(res.data.results)
+              setTime(res.data.time)
+              setCount(res.data.count)
+              if (res.data.results.length == 0) {
+                setError(true)
+              }
+            } else {
+              setError(true)
+            }
+          } else{
+            setError(true)
+          }
+          setLoading(false)
+          setSearched(true)
+        }).catch(err => {
+          setError(true)
+          setLoading(false)
+          setSearched(true)
+        })
     }
   }
 
   const skls = []
   for (var i = 0; i < 7; i++) {
-    skls.push(<div className='grid'>
+    skls.push(<div className='grid' key={i}>
       <Skeleton animation="wave" style={{ width: "100px" }} />
       <Skeleton animation="wave" style={{ width: "200px" }} />
       <Skeleton animation="wave" style={{ width: "500px" }} />
@@ -63,28 +83,24 @@ function App() {
         </div>
       </header>
       <section className="result">
-        <section className='vision'>
+        {!error ? <div>
+          <section className='vision'>
           {loading ? <div>
             <Skeleton animation="wave" className='statistic-skel' />
           </div> : null}
-          {loading || error || !searched ? null : <span className='statistic'>حدود 500 نتیجه در 0.1 ثانیه</span>}
+          {loading || error || !searched ? null : <span className='statistic'>حدود {count} نتیجه در {time} ثانیه</span>}
         </section>
-        {/* {
-          resArr.map((v,k) => {
-            return v
-          })
-        } */}
         {loading ? <div className='skeleton-div'>
           {skls}
         </div> : null}
-        {loading ? null : resArr.map((v, k) => {
-          return
-          <div className="grid">
-            <div className='grid-url'>google.com</div>
-            <div className="grid-title"><a href="google.com" className='url'>تستچی: سامانه آنلاین انواع تست</a></div>
-            <div className="grid-summary">کامل ترین مرجع ساخت و انجام انواع تست و کوییز آنلاین، تست شخصیت شناسی، طرفداری، داستانی،سرگرمی، هوش به زبان فارسی</div>
+        {loading || error ? null : resArr.map((v, k) => (
+          <div className="grid" key={k}>
+            <div className='grid-url'>{v.url}</div>
+            <div className="grid-title"><a href="google.com" className='url'>{v.title}</a></div>
+            <div className="grid-summary">{v.summary}</div>
           </div>
-        })}
+        ))}
+        </div> : <Alert severity="warning" style={{fontFamily:"IRANSans"}}>نتیجه ای یافت نشد</Alert>}
       </section>
       <footer className='footer'>
         <ul className='footer-ul'>
